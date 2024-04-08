@@ -2,10 +2,10 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  //signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -27,11 +27,10 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
+export const db = getFirestore();
+
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
-// export const signInWithGoogleRedirect = () =>
-//   signInWithRedirect(auth, googleProvider);
-export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -39,12 +38,10 @@ export const createUserDocumentFromAuth = async (
 ) => {
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
-  //console.log(userDocRef);
 
   try {
     const userSnapshot = await getDoc(userDocRef);
-    // console.log(userSnapshot.data());
-    // check if userSnapshot exists. If not write to db
+
     if (!userSnapshot.exists()) {
       const { displayName, email } = userAuth;
       const createdAt = new Date();
@@ -63,21 +60,30 @@ export const createUserDocumentFromAuth = async (
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return; // Ensure both email and password are provided
+  if (!email || !password) return;
 
   try {
-    // Create a new user account with email and password
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-    // Optionally, you can handle any additional logic here after successful user creation
+
     console.log("User created successfully:", userCredential.user);
-    return userCredential; // Return the user credential if needed
+    return userCredential;
   } catch (error) {
-    // Handle any errors that might occur during user creation
     console.error("Error creating user:", error.message);
-    throw error; // Throw the error for further handling if needed
+    throw error;
+  }
+};
+
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  try {
+    return await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.error("Error signing in:", error.message);
+    throw error;
   }
 };
