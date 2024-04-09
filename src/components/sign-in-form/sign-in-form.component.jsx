@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  createUserDocumentFromAuth,
+  //createUserDocumentFromAuth,
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
@@ -25,11 +25,9 @@ function SignInForm() {
   const signInWithGoogle = async () => {
     try {
       // Call the signInWithGooglePopup function to initiate the Google sign-in process
-      const { user } = await signInWithGooglePopup();
-      // Once the user is authenticated, create a user document in the database
-      await createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
       // Optionally, you can handle any additional logic here after successful sign-in
-      console.log("User signed in successfully:", user);
+      console.log("User signed in successfully");
     } catch (error) {
       console.error("Error signing in:", error.message);
     }
@@ -38,11 +36,11 @@ function SignInForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
+      console.log(user);
       resetFormFields();
       //add a welcome or you have been sign up here maybe
     } catch (error) {
