@@ -25,9 +25,6 @@ function Navigation() {
           <Link className="nav-link" to="shop">
             SHOP
           </Link>
-          <Link className="nav-link" to="shop">
-            CONTACT
-          </Link>
           {currentUser ? (
             <span className="nav-link" onClick={signOutUser}>
               SIGN OUT

@@ -13,7 +13,7 @@ function App() {
       <Route path="/" element={<Navigation />}>
         {/* The index property is a special case in React Router that specifies the route to render when the parent route's path matches exactly. */}
         <Route index element={<Home />} />
-        <Route path="shop" element={<Shop />} />
+        <Route path="shop/*" element={<Shop />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="auth" element={<Authentication />} />
       </Route>

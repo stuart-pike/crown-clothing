@@ -41,7 +41,7 @@ export const CartContext = createContext({
   addItemToCart: () => {},
   cartQuantity: 0,
   adjustQuantity: () => {},
-  removeCartItem: () => {}, // Define removeItemFromCart in the context
+  removeCartItem: () => {},
   cartTotal: 0,
 });
 
@@ -62,7 +62,7 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]); // Trigger the effect whenever cartItems changes
 
   useEffect(() => {
-    // Calculate the total quantity of items in the cart using reduce
+    // Calculate the total price of items in the cart using reduce
     const newCartTotal = cartItems.reduce(
       (total, cartItem) => total + cartItem.quantity * cartItem.price,
       0
@@ -70,15 +70,17 @@ export const CartProvider = ({ children }) => {
     setCartTotal(newCartTotal);
   }, [cartItems]); // Trigger the effect whenever cartItems changes
 
+  // Add an item to the cart
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
-  // Helper function to remove an item from the cartItems array based on its ID
+  // Remove an item from the cart
   const removeCartItem = (productId) => {
     setCartItems(removeItem(cartItems, productId));
   };
 
+  // Add or Subtract the quantity of an item in the cart
   const adjustQuantity = (productId, newQuantity) => {
     setCartItems(adjustItemQuantity(cartItems, productId, newQuantity));
   };
@@ -89,7 +91,7 @@ export const CartProvider = ({ children }) => {
     addItemToCart,
     cartItems,
     cartQuantity,
-    adjustQuantity, // Add adjustQuantity to the context value
+    adjustQuantity,
     removeCartItem,
     cartTotal,
   };
