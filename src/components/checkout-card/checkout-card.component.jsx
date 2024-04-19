@@ -7,7 +7,7 @@ import {
   ImageContainer,
   BaseSpan,
   QuantityContainer,
-  Value,
+  Quantity,
   Arrow,
   RemoveBtn,
 } from "./checkout-card.styles";
@@ -41,7 +41,7 @@ const CheckoutCard = ({ cartItem }) => {
       <BaseSpan>{name}</BaseSpan>
       <QuantityContainer>
         <Arrow onClick={decreaseQuantityHandler}>&#10094;</Arrow>
-        <Value>{quantity}</Value>
+        <Quantity>{quantity}</Quantity>
         <Arrow onClick={increaseQuantityHandler}>&#10095;</Arrow>
       </QuantityContainer>
       <BaseSpan>{price}</BaseSpan>
