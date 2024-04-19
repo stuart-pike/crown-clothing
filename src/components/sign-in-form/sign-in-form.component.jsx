@@ -7,7 +7,7 @@ import {
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-import { SignInContainer, Heading2, BtnContainer } from "./sign-in-form.styles";
+import { SignInContainer, BtnContainer } from "./sign-in-form.styles";
 
 const defaultFormFields = {
   email: "",
@@ -64,7 +64,7 @@ function SignInForm() {
 
   return (
     <SignInContainer>
-      <Heading2>Already have an account?</Heading2>
+      <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput

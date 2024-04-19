@@ -5,12 +5,10 @@ import { CartContext } from "../../contexts/cart.context";
 import {
   CheckoutContainer,
   ImageContainer,
-  ProductImage,
-  Description,
+  BaseSpan,
   QuantityContainer,
-  ItemQuantity,
+  Value,
   Arrow,
-  Price,
   RemoveBtn,
 } from "./checkout-card.styles";
 
@@ -38,15 +36,15 @@ const CheckoutCard = ({ cartItem }) => {
   return (
     <CheckoutContainer>
       <ImageContainer>
-        <ProductImage src={imageUrl} alt={`${name}`} />
+        <img src={imageUrl} alt={`${name}`} />
       </ImageContainer>
-      <Description>{name}</Description>
+      <BaseSpan>{name}</BaseSpan>
       <QuantityContainer>
         <Arrow onClick={decreaseQuantityHandler}>&#10094;</Arrow>
-        <ItemQuantity>{quantity}</ItemQuantity>
+        <Value>{quantity}</Value>
         <Arrow onClick={increaseQuantityHandler}>&#10095;</Arrow>
       </QuantityContainer>
-      <Price>{price}</Price>
+      <BaseSpan>{price}</BaseSpan>
       <RemoveBtn onClick={removeItemFromCartHandler}>&#10005;</RemoveBtn>
     </CheckoutContainer>
   );

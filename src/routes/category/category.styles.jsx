@@ -9,5 +9,7 @@ export const CategoryContainer = styled.div`
 
 export const CategoryTitle = styled.div`
   font-size: 38px;
+  font-weight: bold;
   margin-bottom: 25px;
+  text-align: center;
 `;

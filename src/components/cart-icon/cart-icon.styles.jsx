@@ -17,7 +17,7 @@ export const IconContainer = styled.div`
   cursor: pointer;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled(IconContainer)`
   width: 32px;
   height: 32px;
 `;

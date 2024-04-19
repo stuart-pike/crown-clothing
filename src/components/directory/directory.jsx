@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import DirectoryItem from "../directory-item/directory-item.component";
-import categories from "./directory.json";
 
 import { DirectoryContainer } from "./directory.styles";
 
-const Directory = () => {
+const Directory = ({ categories }) => {
   return (
     <DirectoryContainer>
       {categories.map((category) => (
