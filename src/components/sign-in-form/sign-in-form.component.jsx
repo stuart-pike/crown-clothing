@@ -5,9 +5,9 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-import "./sign-in-form.styles.scss";
+import { SignInContainer, Heading2, BtnContainer } from "./sign-in-form.styles";
 
 const defaultFormFields = {
   email: "",
@@ -63,8 +63,8 @@ function SignInForm() {
   };
 
   return (
-    <div className="sign-up-container">
-      <h2>Already have an account?</h2>
+    <SignInContainer>
+      <Heading2>Already have an account?</Heading2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -85,15 +85,19 @@ function SignInForm() {
           value={password}
           autoComplete="password"
         />
-        <div className="buttons-container">
+        <BtnContainer>
           <Button type="submit">Sign In</Button>
           {/* type button prevents "submit" */}
-          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={signInWithGoogle}
+          >
             Google Sign In
           </Button>
-        </div>
+        </BtnContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 }
 

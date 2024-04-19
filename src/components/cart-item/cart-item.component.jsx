@@ -1,17 +1,23 @@
-import "./cart-item.styles.scss";
+/* eslint-disable react/prop-types */
+import {
+  CartContainer,
+  ItemImage,
+  ItemDetails,
+  Detail,
+} from "./cart-item.styles";
 
 const CartItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   return (
-    <div className="cart-item-container">
-      <img src={imageUrl} alt={`{name}`} />
-      <div className="item-details">
-        <span className="name">{name}</span>
-        <span className="price">
+    <CartContainer>
+      <ItemImage src={imageUrl} alt={`{name}`} />
+      <ItemDetails>
+        <Detail>{name}</Detail>
+        <Detail>
           {quantity} x ${price}
-        </span>
-      </div>
-    </div>
+        </Detail>
+      </ItemDetails>
+    </CartContainer>
   );
 };
 
