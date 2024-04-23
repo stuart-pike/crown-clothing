@@ -17,9 +17,11 @@ const CheckoutCard = ({ cartItem }) => {
   const { adjustQuantity, setIsCartOpen, removeCartItem } =
     useContext(CartContext);
 
+  //close cart when entering shopping cart
   useEffect(() => {
     setIsCartOpen(false);
-  }, [setIsCartOpen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const decreaseQuantityHandler = () => {
     adjustQuantity(id, quantity - 1);
