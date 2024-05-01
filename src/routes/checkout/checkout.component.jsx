@@ -4,7 +4,9 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../store/cart/cart.selector";
+
 import CheckoutCard from "../../components/checkout-card/checkout-card.component";
+
 import {
   CheckoutContainer,
   CheckoutHeader,
@@ -13,7 +15,6 @@ import {
 } from "./checkout.styles";
 
 const Checkout = () => {
-  // const { cartItems, cartTotal } = useContext(CartContext);
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
