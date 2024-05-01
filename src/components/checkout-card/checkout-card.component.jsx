@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useContext, useEffect } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useSelector, useDispatch } from "react-redux";
+
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { removeCartItem, adjustQuantity } from "../../store/cart/cart.action";
 
 import {
   CheckoutContainer,
@@ -14,25 +16,19 @@ import {
 
 const CheckoutCard = ({ cartItem }) => {
   const { id, name, imageUrl, price, quantity } = cartItem;
-  const { adjustQuantity, setIsCartOpen, removeCartItem } =
-    useContext(CartContext);
-
-  //close cart when entering shopping cart
-  useEffect(() => {
-    setIsCartOpen(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
 
   const decreaseQuantityHandler = () => {
-    adjustQuantity(id, quantity - 1);
+    dispatch(adjustQuantity(cartItems, id, quantity - 1));
   };
 
   const increaseQuantityHandler = () => {
-    adjustQuantity(id, quantity + 1);
+    dispatch(adjustQuantity(cartItems, id, quantity + 1));
   };
 
   const removeItemFromCartHandler = () => {
-    removeCartItem(id);
+    dispatch(removeCartItem(cartItems, id));
   };
 
   return (
